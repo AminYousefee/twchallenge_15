@@ -128,11 +128,12 @@ public class City {
     }
 
 
-    public double getScore() {
+    public int  getScore() {
         int sum = 0;
         for (Block index : blocks) {
             sum += index.getScore();
         }
+        return sum;
     }
 
     public int getGills() {
@@ -150,6 +151,8 @@ public class City {
                 return index;
             }
         }
+        System.out.println("Block Not Found");
+        return null;
     }
 
 
