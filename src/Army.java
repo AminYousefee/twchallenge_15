@@ -1,3 +1,5 @@
 public class Army extends Elem{
-    int
+    void attack(int enemyBlock){
+
+    }
 }

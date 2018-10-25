@@ -1,11 +1,39 @@
 public class World {
+
+
+    public int day;
     public static void main(String[] args) {
-        int day;
         City a;
         City b;
-        void addDay(){
 
-        }
+
+
+
+
+
 
     }
+    void addDay(){
+
+    }
+
+
+
+
+
+
+
+
+    void isFinished(){
+
+    }
+    void toCommand(){
+
+    }
+
+
+
+
+
+
 }
