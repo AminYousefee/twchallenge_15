@@ -8,7 +8,7 @@ public abstract class Elem {
         startingDay =World.world.day;
     }
 
-    upgradeElem(){
+    void upgradeElem(){
 
     }
     int getScore(){

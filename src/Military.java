@@ -7,7 +7,9 @@ public class Military extends Army {
 
 
     }
+    void upgradeElem(){
 
+    }
     @Override
     int getScore() {
         return (int)Math.pow(10,World.world.day-startingDay);
