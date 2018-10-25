@@ -115,6 +115,36 @@ public class City {
             Gildoni t1 = new Gildoni(tempNumOfFloor, tempNumOfUnits);
             this.findBlockById(tempId).addElem(t1);
         }
+        //todo
+        if ((m = getMatched("upgrade\\s+(\\d+)\\s+(\\d+)\\s+floor", command.toLowerCase())) != null) {
+            int blockId = Integer.parseInt(m.group(1));
+            int unitId = Integer.parseInt(m.group(2));
+
+        }
+
+        if ((m = getMatched("upgrade\\s+(\\d+)\\s+(\\d+)\\s+unit", command.toLowerCase())) != null) {
+            int blockId = Integer.parseInt(m.group(1));
+            int unitId = Integer.parseInt(m.group(2));
+            int tempNumOfUnits = Integer.parseInt(m.group(3));
+            Gildoni t1 = new Gildoni(tempNumOfFloor, tempNumOfUnits);
+            this.findBlockById(tempId).addElem(t1);
+        }
+        if ((m = getMatched("upgrade\\s+(\\d+)\\s+(\\d+)\\s+floor\\s+unit", command.toLowerCase())) != null) {
+            int blockId = Integer.parseInt(m.group(1));
+            int unitId = Integer.parseInt(m.group(2));
+            int tempNumOfUnits = Integer.parseInt(m.group(3));
+            Gildoni t1 = new Gildoni(tempNumOfFloor, tempNumOfUnits);
+            this.findBlockById(tempId).addElem(t1);
+        }
+
+
+
+
+
+//todo
+
+
+
 
 
     }
