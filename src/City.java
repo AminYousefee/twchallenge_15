@@ -17,6 +17,8 @@ public class City {
     }
 
     void removeblock(int blockid) {
+        Block t1= this.findBlockById(blockid);
+        this.blocks.remove(t1);
 
     }
 
@@ -31,6 +33,7 @@ public class City {
 
 
     void addMilitary() {
+        if
 
     }
 
@@ -61,11 +64,50 @@ public class City {
 
         }
 
-        if ((m=getMatched("add\\s+block\\s+",command))!=null){
+        if ((m=getMatched("add\\s+block\\s+",command.toLowerCase()))!=null){
             Block temp = new Block();
             this.blocks.add(temp);
 
         }
+        if ((m=getMatched("remove\\s+(\\d+)",command.toLowerCase()))!=null){
+            int tempId = Integer.parseInt(m.group(1));
+            this.removeblock(tempId);
+
+        }
+        if ((m=getMatched("upgrade\\s+(\\d+)",command.toLowerCase()))!=null){
+            int tempId = Integer.parseInt(m.group(1));
+            this.findBlockById(tempId).upgradeBlock();
+
+        }
+        if ((m=getMatched("add\\s+army\\s+(\\d+)",command.toLowerCase()))!=null){
+            int tempId = Integer.parseInt(m.group(1));
+            if(this.blockMilitary!=null){
+                System.out.println("Military Already Exists");
+            }else {
+                Military t1=new Military();
+                this.findBlockById(tempId).addElem(t1);
+            }
+
+        }
+        if ((m=getMatched("add\\s+defense\\s+(\\d+)",command.toLowerCase()))!=null){
+            int tempId = Integer.parseInt(m.group(1));
+            if(this.findBlockById(tempId).blockDefense!=null){
+                System.out.println("Defense Already Exists");
+            }else {
+                Defense t1=new Defense();
+                this.findBlockById(tempId).addElem(t1);
+            }
+
+        }
+        if ((m=getMatched("add\\s+bazar\\s+(\\d+)",command.toLowerCase()))!=null){
+            int tempId = Integer.parseInt(m.group(1));
+                Defense t1=new Defense();
+                this.findBlockById(tempId).addElem(t1);
+
+
+        }
+
+
 
 
 
@@ -108,6 +150,11 @@ public class City {
                 return index;
             }
         }
+    }
+
+
+    void changeGills(int change){
+        gills+=change;
     }
 
 
