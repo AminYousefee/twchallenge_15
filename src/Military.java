@@ -6,6 +6,16 @@ public class Military extends Army {
     }
 
 
+    public static Military addMilitary(Block sup,int idToAssign) {
+        if (sup.sup.getGills() < 15000) {
+            System.out.println("NOT ENOUGH MONEY");
+        } else if (sup.numOfUnemployed < 100) {
+            System.out.println("NOT ENOUGH PEOPLE");
+
+        }else {
+            return new Military(sup,idToAssign);
+        }
+    }
 
     void attack(Block enemyBlock) {
         if (sup.sup.getGills() > 5000) {

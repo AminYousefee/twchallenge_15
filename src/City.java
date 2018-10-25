@@ -90,13 +90,13 @@ public class City {
             this.findBlockById(tempId).upgradeBlock();
 
         }
-        //To add new army
+        //To add new military
         if ((m = getMatched("add\\s+army\\s+(\\d+)", command.toLowerCase())) != null) {
             int blockId = Integer.parseInt(m.group(1));
             if (this.blockMilitary != null) {
                 System.out.println("Military Already Exists");
             } else if (this.findBlockById(blockId).hasCapasity()) {
-                Military t1 = Military.addElem(this.findBlockById(blockId),idToAssign);
+                Military t1 = Military.addMilitary(this.findBlockById(blockId),idToAssign);
                 if(t1!=null){
                     idToAssign++;
                     this.findBlockById(blockId).elems.add(t1);
@@ -111,7 +111,7 @@ public class City {
             if (this.findBlockById(blockId).blockDefense != null) {
                 System.out.println("Defense Already Exists");
             } else if (this.findBlockById(blockId).hasCapasity()) {
-                Defense t1 = Defense.addElem(this.findBlockById(blockId),idToAssign)
+                Defense t1 = Defense.addDefense(this.findBlockById(blockId),idToAssign)
                 if(t1!=null){
                     idToAssign++;
                     this.findBlockById(blockId).elems.add(t1);
@@ -121,24 +121,32 @@ public class City {
         }
 
 
-        //
+
+
+        //To add Bazar
         if ((m = getMatched("add\\s+bazar\\s+(\\d+)", command.toLowerCase())) != null) {
             int blockId = Integer.parseInt(m.group(1));
             if (this.findBlockById(blockId).hasCapasity()) {
-                Bazar t1 = new Bazar();
-                this.findBlockById(blockId).addElem(t1);
+                Bazar t1 = Bazar.addBazar(this.findBlockById(blockId),idToAssign);
+                this.findBlockById(blockId).elems.add(t1);
             }
         }
+
+
+
+        //To add Home
         if ((m = getMatched("add\\s+home\\s+(\\d+)\\s+(\\d+)+\\s+(\\d+)", command.toLowerCase())) != null) {
             int blockId = Integer.parseInt(m.group(1));
             int tempNumOfFloor = Integer.parseInt(m.group(2));
             int tempNumOfUnits = Integer.parseInt(m.group(3));
             if (this.findBlockById(blockId).hasCapasity()) {
-                Home t1 = new Home(tempNumOfFloor, tempNumOfUnits);
-                this.findBlockById(blockId).addElem(t1);
+                Home t1 = Home.addHome(this.findBlockById(blockId),idToAssign,tempNumOfFloor, tempNumOfUnits);
+                this.findBlockById(blockId).elems.add(t1);
             }
         }
 
+
+        // To add floor to a home
         if ((m = getMatched("upgrade\\s+(\\d+)\\s+(\\d+)\\s+floor", command.toLowerCase())) != null) {
             int blockId = Integer.parseInt(m.group(1));
             int elemId = Integer.parseInt(m.group(2));
@@ -150,6 +158,8 @@ public class City {
 
         }
 
+
+        //To add unit to a home
         if ((m = getMatched("upgrade\\s+(\\d+)\\s+(\\d+)\\s+unit", command.toLowerCase())) != null) {
             int blockId = Integer.parseInt(m.group(1));
             int elemId = Integer.parseInt(m.group(2));
@@ -159,24 +169,30 @@ public class City {
                 System.out.println("NOT GILDONI");
             }
         }
+
+
+        //add unit and floor to home
         if ((m = getMatched("upgrade\\s+(\\d+)\\s+(\\d+)\\s+floor\\s+unit", command.toLowerCase())) != null) {
             int blockId = Integer.parseInt(m.group(1));
             int elemId = Integer.parseInt(m.group(2));
 
             if (this.findBlockById(blockId).findElemById(elemId) instanceof Home) {
-                ((Home) this.findBlockById(blockId).findElemById(elemId)).addUnit();
-                ((Home) this.findBlockById(blockId).findElemById(elemId)).addFloor();
+                ((Home) this.findBlockById(blockId).findElemById(elemId)).addFloorAndUnit();
             } else {
                 System.out.println("NOT GILDONI");
             }
         }
+
+
+
+
+        //add unit and floor to home
         if ((m = getMatched("upgrade\\s+(\\d+)\\s+(\\d+)\\s+unit\\s+floor", command.toLowerCase())) != null) {
             int blockId = Integer.parseInt(m.group(1));
             int elemId = Integer.parseInt(m.group(2));
 
             if (this.findBlockById(blockId).findElemById(elemId) instanceof Home) {
-                ((Home) this.findBlockById(blockId).findElemById(elemId)).addUnit();
-                ((Home) this.findBlockById(blockId).findElemById(elemId)).addFloor();
+                ((Home) this.findBlockById(blockId).findElemById(elemId)).addFloorAndUnit();
             } else {
                 System.out.println("NOT GILDONI");
             }

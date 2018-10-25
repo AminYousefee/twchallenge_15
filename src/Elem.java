@@ -5,8 +5,8 @@ public abstract class Elem {
     int level;
     int id;
     Block sup;
-
-    public static Military addElem(Block sup,int idToAssign) {
+    /*
+    public static Elem addElem(Block sup,int idToAssign) {
         if (sup.sup.getGills() < startNeededValue) {
             System.out.println("NOT ENOUGH MONEY");
         } else if (sup.numOfUnemployed < startNeededPeople) {
@@ -16,7 +16,7 @@ public abstract class Elem {
             return new Military(sup,idToAssign);
         }
     }
-
+    */
 
 
 
