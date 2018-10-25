@@ -8,6 +8,7 @@ public class City {
     private double score;
     private int gills;
     Military blockMilitary;
+    int idToAssign=1;
 
     ArrayList<Block> blocks;
 
@@ -59,6 +60,19 @@ public class City {
             }
 
         }
+
+        if ((m=getMatched("add\\s+block\\s+",command))!=null){
+            Block temp = new Block();
+            this.blocks.add(temp);
+
+        }
+
+
+
+
+
+
+
     }
 
     private Matcher getMatched(String strPattern, String input) {
@@ -95,5 +109,6 @@ public class City {
             }
         }
     }
+
 
 }
