@@ -63,7 +63,7 @@ public class Block {
     }
 
     int getScore() {
-        int sum=0;
+        int sum = 0;
         for (Elem index : elems) {
             sum += index.getScore();
         }
@@ -71,17 +71,33 @@ public class Block {
     }
 
 
-
-
-
-    double getRefah(){
-        for (Elem index:elems){
-            double res=1.0d;
-            if (index instanceof Bazar){
-                res*=(1+0.2*index.(level-1))
+    double getRefah() {
+        for (Elem index : elems) {
+            double res = 1.0d;
+            if (index instanceof Bazar) {
+                res *= (1 + 0.2 * index. (level - 1))
             }
 
         }
+    }
+
+    Elem findElemById(int id){
+        for (Elem index:elems){
+            if(index.id==id) {
+                return index;
+            }
+        }
+        System.out.println("ELEM NOT FOUND");
+        return null;
+    }
+
+
+    boolean hasCapasity(){
+        if (maxNumOfElems!=numOfElems){
+            System.out.println("BLOCK FULL");
+        }
+
+        return maxNumOfElems == numOfElems;
     }
 
 }

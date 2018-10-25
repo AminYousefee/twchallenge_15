@@ -10,7 +10,7 @@ public class Gildoni extends Elem {
         }
     }
 
-    void addFloor(int numToAdd) {
+    void addFloor() {
 
     }
 
@@ -18,7 +18,7 @@ public class Gildoni extends Elem {
 
     }
 
-    void addUnit(int numToAdd) {
+    void addUnit() {
 
     }
 
