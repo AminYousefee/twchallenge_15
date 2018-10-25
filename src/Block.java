@@ -12,16 +12,15 @@ public class Block {
     ArrayList<Elem> elems;
 
 
-    static Block addBlock(City city){
-        if (city.getGills()<1000){
+    static Block addBlock(City city, int idToAssign) {
+        if (city.getGills() < 1000) {
             System.out.println("NOT ENOUGH MONEY FOR BUILDING BLOCK");
-        }else {
-            return new Block();
+            return null;
+        } else {
+            return new Block(city, idToAssign);
 
         }
     }
-
-
 
 
     public Block(City sup, int id) {
@@ -37,7 +36,7 @@ public class Block {
         } else {
             if (t1 instanceof Bazar) {
                 sup.changeGills(-6000);
-            } else if (t1 instanceof Gildoni) {
+            } else if (t1 instanceof Home) {
                 //todo
             } else if (t1 instanceof Military) {
                 sup.changeGills(-15000);
@@ -54,8 +53,8 @@ public class Block {
 
     void upgradeBlock() {
         if (level == 3) {
-            System.out.println("Not Possible");
-        } else {
+            System.out.println("LEVEL 3 Not Possible");
+        } else if (sup.getGills() >= Math.pow(500, level))){
 
             maxNumOfElems += 5;
 
@@ -101,9 +100,9 @@ public class Block {
         }
     }
 
-    Elem findElemById(int id){
-        for (Elem index:elems){
-            if(index.id==id) {
+    Elem findElemById(int id) {
+        for (Elem index : elems) {
+            if (index.id == id) {
                 return index;
             }
         }
@@ -112,8 +111,8 @@ public class Block {
     }
 
 
-    boolean hasCapasity(){
-        if (maxNumOfElems!=numOfElems){
+    boolean hasCapasity() {
+        if (maxNumOfElems != numOfElems) {
             System.out.println("BLOCK FULL");
         }
 

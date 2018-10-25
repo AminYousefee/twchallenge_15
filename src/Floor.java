@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 
 public class Floor {
-    Gildoni Sup;
+    Home Sup;
     ArrayList<Unit> units;
 
 
-    public Floor(int numOfUnits, Gildoni t) {
+    public Floor(int numOfUnits, Home t) {
         Sup = t;
         units = new ArrayList<Unit>(numOfUnits);
         for (Unit index : units) {

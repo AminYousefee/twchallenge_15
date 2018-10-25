@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 
-public class Gildoni extends Elem {
+public class Home extends Elem {
     ArrayList<Floor> floors;
     int numOfUnitsInAFloor;
-    public Gildoni(int numOfFloors, int numOfUnits) {
+    public Home(int numOfFloors, int numOfUnits) {
         floors = new ArrayList<Floor>(numOfFloors);
         for (Floor index: floors){
-            index = new Floor(numOfUnits);
+            index = new Floor(numOfUnits,this);
         }
         sup.sup.changeGills(-700);
     }
