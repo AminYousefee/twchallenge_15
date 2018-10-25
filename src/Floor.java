@@ -7,5 +7,10 @@ public class Floor {
      }
 
 
-
+    public Floor(int numOfUnits) {
+         units = new ArrayList<Unit>(numOfUnits);
+         for (Unit index:units){
+             index = new Unit();
+         }
+    }
 }
