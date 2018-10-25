@@ -12,7 +12,7 @@ public class Gildoni extends Elem {
         }
     }
     void addFloor(){
-        Floor floor = new Floor(numOfUnitsInAFloor,this)
+        Floor floor = new Floor(numOfUnitsInAFloor,this);
         this.floors.add(floor);
     }
 
@@ -26,6 +26,9 @@ public class Gildoni extends Elem {
 
     void addUnit(int numToAdd) {
 
+        for(Floor f:floors) {
+            f.addUnit();
+        }
     }
 
     @Override
