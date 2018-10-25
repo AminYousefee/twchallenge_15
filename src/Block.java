@@ -4,6 +4,7 @@ public class Block {
     int id;
     int level;
     int numOfElems;
+    Defense blockDefense;
 
     ArrayList<Elem> elems;
 
@@ -15,6 +16,12 @@ public class Block {
 
     }
     void upgradeBlock(){
+
+    }
+    void addDefense(){
+
+    }
+    void removeDefense(){
 
     }
 
