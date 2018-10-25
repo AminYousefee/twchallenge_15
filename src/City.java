@@ -43,6 +43,7 @@ public class City {
 
 
     void processCommand(String command) {
+        //todo a very big method
         if (command.equalsIgnoreCase("See score")) {
             System.out.println(this.getScore());
         }
@@ -79,69 +80,85 @@ public class City {
 
         }
         if ((m = getMatched("add\\s+army\\s+(\\d+)", command.toLowerCase())) != null) {
-            int tempId = Integer.parseInt(m.group(1));
+            int blockId = Integer.parseInt(m.group(1));
             if (this.blockMilitary != null) {
                 System.out.println("Military Already Exists");
-            } else {
+            } else if (this.findBlockById(blockId).hasCapasity()) {
                 Military t1 = new Military();
-                this.findBlockById(tempId).addElem(t1);
+                this.findBlockById(blockId).addElem(t1);
             }
-
         }
+
+
         if ((m = getMatched("add\\s+defense\\s+(\\d+)", command.toLowerCase())) != null) {
-            int tempId = Integer.parseInt(m.group(1));
-            if (this.findBlockById(tempId).blockDefense != null) {
+            int blockId = Integer.parseInt(m.group(1));
+            if (this.findBlockById(blockId).blockDefense != null) {
                 System.out.println("Defense Already Exists");
-            } else {
+            } else if (this.findBlockById(blockId).hasCapasity()) {
                 Defense t1 = new Defense();
-                this.findBlockById(tempId).addElem(t1);
+                this.findBlockById(blockId).addElem(t1);
             }
 
         }
         if ((m = getMatched("add\\s+bazar\\s+(\\d+)", command.toLowerCase())) != null) {
-            int tempId = Integer.parseInt(m.group(1));
-            Bazar t1 = new Bazar();
-            this.findBlockById(tempId).addElem(t1);
-        }
-        if ((m = getMatched("add\\s+bazar\\s+(\\d+)", command.toLowerCase())) != null) {
-            int tempId = Integer.parseInt(m.group(1));
-            Bazar t1 = new Bazar();
-            this.findBlockById(tempId).addElem(t1);
+            int blockId = Integer.parseInt(m.group(1));
+            if (this.findBlockById(blockId).hasCapasity()) {
+                Bazar t1 = new Bazar();
+                this.findBlockById(blockId).addElem(t1);
+            }
         }
         if ((m = getMatched("add\\s+home\\s+(\\d+)\\s+(\\d+)+\\s+(\\d+)", command.toLowerCase())) != null) {
-            int tempId = Integer.parseInt(m.group(1));
+            int blockId = Integer.parseInt(m.group(1));
             int tempNumOfFloor = Integer.parseInt(m.group(2));
             int tempNumOfUnits = Integer.parseInt(m.group(3));
-            Gildoni t1 = new Gildoni(tempNumOfFloor, tempNumOfUnits);
-            this.findBlockById(tempId).addElem(t1);
+            if (this.findBlockById(blockId).hasCapasity()) {
+                Gildoni t1 = new Gildoni(tempNumOfFloor, tempNumOfUnits);
+                this.findBlockById(blockId).addElem(t1);
+            }
         }
-        //todo
+
         if ((m = getMatched("upgrade\\s+(\\d+)\\s+(\\d+)\\s+floor", command.toLowerCase())) != null) {
             int blockId = Integer.parseInt(m.group(1));
-            int unitId = Integer.parseInt(m.group(2));
+            int elemId = Integer.parseInt(m.group(2));
+            if (this.findBlockById(blockId).findElemById(elemId) instanceof Gildoni){
+                ((Gildoni) this.findBlockById(blockId).findElemById(elemId)).addFloor();
+            }else {
+                System.out.println("NOT GILDONI");
+            }
 
         }
 
         if ((m = getMatched("upgrade\\s+(\\d+)\\s+(\\d+)\\s+unit", command.toLowerCase())) != null) {
             int blockId = Integer.parseInt(m.group(1));
-            int unitId = Integer.parseInt(m.group(2));
-            int tempNumOfUnits = Integer.parseInt(m.group(3));
-            Gildoni t1 = new Gildoni(tempNumOfFloor, tempNumOfUnits);
-            this.findBlockById(tempId).addElem(t1);
+            int elemId = Integer.parseInt(m.group(2));
+            if (this.findBlockById(blockId).findElemById(elemId) instanceof Gildoni){
+                ((Gildoni) this.findBlockById(blockId).findElemById(elemId)).addUnit();
+            }else {
+                System.out.println("NOT GILDONI");
+            }
         }
         if ((m = getMatched("upgrade\\s+(\\d+)\\s+(\\d+)\\s+floor\\s+unit", command.toLowerCase())) != null) {
             int blockId = Integer.parseInt(m.group(1));
-            int unitId = Integer.parseInt(m.group(2));
-            int tempNumOfUnits = Integer.parseInt(m.group(3));
-            Gildoni t1 = new Gildoni(tempNumOfFloor, tempNumOfUnits);
-            this.findBlockById(tempId).addElem(t1);
+            int elemId = Integer.parseInt(m.group(2));
+
+            if (this.findBlockById(blockId).findElemById(elemId) instanceof Gildoni){
+                ((Gildoni) this.findBlockById(blockId).findElemById(elemId)).addUnit();
+                ((Gildoni) this.findBlockById(blockId).findElemById(elemId)).addFloor();
+            }else {
+                System.out.println("NOT GILDONI");
+            }
         }
+        if ((m = getMatched("upgrade\\s+(\\d+)\\s+(\\d+)\\s+unit\\s+floor", command.toLowerCase())) != null) {
+            int blockId = Integer.parseInt(m.group(1));
+            int elemId = Integer.parseInt(m.group(2));
 
-
-
-
-
-//todo
+            if (this.findBlockById(blockId).findElemById(elemId) instanceof Gildoni){
+                ((Gildoni) this.findBlockById(blockId).findElemById(elemId)).addUnit();
+                ((Gildoni) this.findBlockById(blockId).findElemById(elemId)).addFloor();
+            }else {
+                System.out.println("NOT GILDONI");
+            }
+        }
 
 
 
@@ -158,7 +175,7 @@ public class City {
     }
 
 
-    public int  getScore() {
+    public int getScore() {
         int sum = 0;
         for (Block index : blocks) {
             sum += index.getScore();

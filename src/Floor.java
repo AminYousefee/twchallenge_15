@@ -3,11 +3,6 @@ import java.util.ArrayList;
 public class Floor {
     Gildoni Sup;
     ArrayList<Unit> units;
-    int calculateIncome
-
-    {
-
-    }
 
 
     public Floor(int numOfUnits, Gildoni t) {
@@ -24,4 +19,13 @@ public class Floor {
             sum += index.getScore();
         }
     }
+    void addUnit(){
+        units.add(new Unit(this));
+
+    }
+
+
+
+
+
 }
