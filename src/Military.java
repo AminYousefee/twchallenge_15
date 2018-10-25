@@ -5,5 +5,11 @@ public class Military extends Army {
             enemyBlock.die();
         }
 
+
+    }
+
+    @Override
+    int getScore() {
+        return (int)Math.pow(10,World.world.day-startingDay);
     }
 }

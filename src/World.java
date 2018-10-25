@@ -1,13 +1,17 @@
 import java.util.Scanner;
 
 public class World {
-
-
+    static World world;
     public int day;
     City a;
     City b;
+
+
+    private World() {
+    }
+
     public static void main(String[] args) {
-        World world= new World();
+        world= new World();
         world.a=new City();
         world.b = new City();
         world.a.enemy=world.b;
