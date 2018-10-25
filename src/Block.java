@@ -5,34 +5,51 @@ public class Block {
     int id;
     int level;
     int numOfElems;
+    int maxNumOfElems;
+    int numToAssign;
     Defense blockDefense;
 
     ArrayList<Elem> elems;
 
 
-
-
-
-    void addElem(){
-
-    }
-    void upgradeBlock(){
-
-    }
-    void addDefense(){
+    void addElem(Elem t1) {
+        if(numOfElems==maxNumOfElems){
+            System.out.println("Not Possible");
+        }else {
+            elems.add(t1);
+        }
 
     }
-    void removeDefense(){
+
+    void upgradeBlock() {
+        if (level == 3) {
+            System.out.println("Not Possible");
+        } else {
+            maxNumOfElems += 5;
+
+            Sup.changeGills((int)-Math.pow(500,level));
+            level++;
+        }
+
+
+
+
+    }
+
+    void addDefense() {
+
+    }
+
+    void removeDefense() {
 
     }
 
     public int getId() {
         return id;
     }
-    void defend(Sup){
-
-    }
-    void die(){
+    void die() {
         Sup.blocks.remove(this);
     }
+
+
 }
