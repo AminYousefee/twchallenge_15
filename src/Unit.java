@@ -16,6 +16,6 @@ public class Unit {
     }
 
     double getScore() {
-        return 5 * this.Sup.Sup.Sup.getRefah();
+        return 5 * this.Sup.Sup.sup.getRefah();
     }
 }

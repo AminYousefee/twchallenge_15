@@ -4,4 +4,12 @@ public class Defense extends Army{
     int getScore() {
         return (int)Math.pow(15,World.world.day-startingDay);
     }
+
+
+    @Override
+    void upgradeElem() {
+        upgradeElem();
+
+
+    }
 }

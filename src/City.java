@@ -19,6 +19,7 @@ public class City {
     void removeblock(int blockid) {
         Block t1 = this.findBlockById(blockid);
         this.blocks.remove(t1);
+        this.gills += 500;
 
     }
 
@@ -32,11 +33,6 @@ public class City {
     }
 
 
-    void addMilitary() {
-        if
-
-    }
-
     void removeMilitary() {
 
     }
@@ -44,15 +40,24 @@ public class City {
 
     void processCommand(String command) {
         //todo a very big method
+
+
+        //See Score
         if (command.equalsIgnoreCase("See score")) {
             System.out.println(this.getScore());
         }
+
+        //See gills
         if (command.equals("See gills")) {
             System.out.println(this.getGills());
         }
 
         Matcher m;
 
+
+
+
+        //When the player wants to attack
         if ((m = getMatched("attack\\s+\\[(\\d+)\\]", command)) != null) {
             int tempId = Integer.parseInt(m.group(1));
             Block t1 = enemy.findBlockById(tempId);
@@ -64,8 +69,10 @@ public class City {
 
         }
 
+        //To add new block
         if ((m = getMatched("add\\s+block\\s+", command.toLowerCase())) != null) {
-            Block temp = new Block();
+            Block temp = new Block(this,idToAssign);
+            idToAssign++;
             this.blocks.add(temp);
 
         }
@@ -120,9 +127,9 @@ public class City {
         if ((m = getMatched("upgrade\\s+(\\d+)\\s+(\\d+)\\s+floor", command.toLowerCase())) != null) {
             int blockId = Integer.parseInt(m.group(1));
             int elemId = Integer.parseInt(m.group(2));
-            if (this.findBlockById(blockId).findElemById(elemId) instanceof Gildoni){
+            if (this.findBlockById(blockId).findElemById(elemId) instanceof Gildoni) {
                 ((Gildoni) this.findBlockById(blockId).findElemById(elemId)).addFloor();
-            }else {
+            } else {
                 System.out.println("NOT GILDONI");
             }
 
@@ -131,9 +138,9 @@ public class City {
         if ((m = getMatched("upgrade\\s+(\\d+)\\s+(\\d+)\\s+unit", command.toLowerCase())) != null) {
             int blockId = Integer.parseInt(m.group(1));
             int elemId = Integer.parseInt(m.group(2));
-            if (this.findBlockById(blockId).findElemById(elemId) instanceof Gildoni){
+            if (this.findBlockById(blockId).findElemById(elemId) instanceof Gildoni) {
                 ((Gildoni) this.findBlockById(blockId).findElemById(elemId)).addUnit();
-            }else {
+            } else {
                 System.out.println("NOT GILDONI");
             }
         }
@@ -141,10 +148,10 @@ public class City {
             int blockId = Integer.parseInt(m.group(1));
             int elemId = Integer.parseInt(m.group(2));
 
-            if (this.findBlockById(blockId).findElemById(elemId) instanceof Gildoni){
+            if (this.findBlockById(blockId).findElemById(elemId) instanceof Gildoni) {
                 ((Gildoni) this.findBlockById(blockId).findElemById(elemId)).addUnit();
                 ((Gildoni) this.findBlockById(blockId).findElemById(elemId)).addFloor();
-            }else {
+            } else {
                 System.out.println("NOT GILDONI");
             }
         }
@@ -152,16 +159,23 @@ public class City {
             int blockId = Integer.parseInt(m.group(1));
             int elemId = Integer.parseInt(m.group(2));
 
-            if (this.findBlockById(blockId).findElemById(elemId) instanceof Gildoni){
+            if (this.findBlockById(blockId).findElemById(elemId) instanceof Gildoni) {
                 ((Gildoni) this.findBlockById(blockId).findElemById(elemId)).addUnit();
                 ((Gildoni) this.findBlockById(blockId).findElemById(elemId)).addFloor();
-            }else {
+            } else {
                 System.out.println("NOT GILDONI");
             }
         }
+        if ((m = getMatched("upgrade\\s+(\\d+)\\s+(\\d+)", command.toLowerCase())) != null) {
+            int blockId = Integer.parseInt(m.group(1));
+            int elemId = Integer.parseInt(m.group(2));
 
-
-
+            if (this.findBlockById(blockId).findElemById(elemId) instanceof Gildoni) {
+                System.out.println("GILDONIEH");
+            } else {
+                this.findBlockById(blockId).findElemById(elemId).upgradeElem();
+            }
+        }
 
 
     }

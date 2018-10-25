@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Block {
-    City Sup;
+    City sup;
     int id;
     int level;
     int numOfElems;
@@ -12,19 +12,38 @@ public class Block {
     ArrayList<Elem> elems;
 
 
+    static Block addBlock(City city){
+        if (city.getGills()<1000){
+            System.out.println("NOT ENOUGH MONEY FOR BUILDING BLOCK");
+        }else {
+            return new Block();
+
+        }
+    }
+
+
+
+
+    public Block(City sup, int id) {
+        this.sup = sup;
+        this.id = id;
+        sup.changeGills(-1000);
+
+    }
+
     void addElem(Elem t1) {
         if (numOfElems == maxNumOfElems) {
             System.out.println("Not Possible");
         } else {
             if (t1 instanceof Bazar) {
-                Sup.changeGills(-6000);
+                sup.changeGills(-6000);
             } else if (t1 instanceof Gildoni) {
                 //todo
             } else if (t1 instanceof Military) {
-                Sup.changeGills(-15000);
+                sup.changeGills(-15000);
 
             } else if (t1 instanceof Defense) {
-                Sup.changeGills(-10000);
+                sup.changeGills(-10000);
             }
             elems.add(t1);
 
@@ -37,9 +56,10 @@ public class Block {
         if (level == 3) {
             System.out.println("Not Possible");
         } else {
+
             maxNumOfElems += 5;
 
-            Sup.changeGills((int) -Math.pow(500, level));
+            sup.changeGills((int) -Math.pow(500, level));
             level++;
         }
 
@@ -59,7 +79,7 @@ public class Block {
     }
 
     void die() {
-        Sup.blocks.remove(this);
+        sup.blocks.remove(this);
     }
 
     int getScore() {
@@ -75,7 +95,7 @@ public class Block {
         for (Elem index : elems) {
             double res = 1.0d;
             if (index instanceof Bazar) {
-                res *= (1 + 0.2 * index. (level - 1))
+                res *= (1 + 0.2 * (index.level - 1));
             }
 
         }

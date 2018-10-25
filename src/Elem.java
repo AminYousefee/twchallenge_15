@@ -2,13 +2,14 @@ public abstract class Elem {
     int startingDay;
     int level;
     int id;
-    Block Sup;
+    Block sup;
     public Elem(Block Sup) {
-        this.Sup=Sup;
+        this.sup =Sup;
         startingDay =World.world.day;
     }
 
-    upgradeElem(){
+    void upgradeElem(){
+        level++;
 
     }
     int getScore(){
