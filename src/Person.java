@@ -4,6 +4,10 @@ public class Person {
     double satisfiction;
     int WorkingDays;
 
+    int calculateIncome(){
+
+    }
+
 
 
 }
