@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class City {
-    int score;
+    double score;
     int mojodi;
     Military blockMilitary;
 
@@ -32,7 +32,12 @@ public class City {
     }
 
 
+    void processCommand(String command){
+
+    }
 
 
+
+a
 
 }
