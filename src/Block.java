@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 public class Block {
+    public int numOfUnemployed=0;
     City sup;
     int id;
     int level;
@@ -31,22 +32,18 @@ public class Block {
     }
 
     void addElem(Elem t1) {
-        if (numOfElems == maxNumOfElems) {
-            System.out.println("Not Possible");
-        } else {
-            if (t1 instanceof Bazar) {
-                sup.changeGills(-6000);
-            } else if (t1 instanceof Home) {
-                //todo
-            } else if (t1 instanceof Military) {
-                sup.changeGills(-15000);
 
-            } else if (t1 instanceof Defense) {
-                sup.changeGills(-10000);
-            }
-            elems.add(t1);
+        if (t1 instanceof Bazar) {
+            sup.changeGills(-6000);
+        } else if (t1 instanceof Home) {
+            //todo
+        } else if (t1 instanceof Military) {
+            sup.changeGills(-15000);
 
+        } else if (t1 instanceof Defense) {
+            sup.changeGills(-10000);
         }
+        elems.add(t1);
 
 
     }
@@ -117,6 +114,15 @@ public class Block {
         }
 
         return maxNumOfElems == numOfElems;
+    }
+
+
+
+    int getNumOfUnemployed(){// is defined minus for Home
+        int result;
+        for (Elem index:elems){
+            result+=index.getEmployed()
+        }
     }
 
 }

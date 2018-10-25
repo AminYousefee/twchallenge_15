@@ -1,5 +1,10 @@
 public class Defense extends Army{
 
+
+    public Defense(Block sup,int idToAssign) {
+        super(sup,idToAssign);
+    }
+
     @Override
     int getScore() {
         return (int)Math.pow(15,World.world.day-startingDay);
@@ -8,8 +13,11 @@ public class Defense extends Army{
 
     @Override
     void upgradeElem() {
-        upgradeElem();
 
 
     }
+
+    int getEmployed(){
+        return 30;
+    }30
 }

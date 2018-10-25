@@ -1,5 +1,13 @@
 public class Army extends Elem{
-    int MilPoewr;
+    double MilPower=0.2;
+
+    public Army(Block Sup, int idToAssign) {
+        super(Sup, idToAssign);
+    }
+
+
+
+
 
 
 }

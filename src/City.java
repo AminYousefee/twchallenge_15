@@ -70,9 +70,10 @@ public class City {
         //To add new block
         if ((m = getMatched("add\\s+block\\s+", command.toLowerCase())) != null) {
             Block temp = Block.addBlock(this, idToAssign);
-            idToAssign++;
+
             if (temp != null) {
                 this.blocks.add(temp);
+                idToAssign++;
             }
         }
 
@@ -95,22 +96,32 @@ public class City {
             if (this.blockMilitary != null) {
                 System.out.println("Military Already Exists");
             } else if (this.findBlockById(blockId).hasCapasity()) {
-                Military t1 = Military.addMilitary(this.findBlockById(blockId).hasCapasity(),idToAssign);
-                this.findBlockById(blockId).addElem(t1);
+                Military t1 = Military.addElem(this.findBlockById(blockId),idToAssign);
+                if(t1!=null){
+                    idToAssign++;
+                    this.findBlockById(blockId).elems.add(t1);
+                }
+
             }
         }
 
-
+        //To add defense
         if ((m = getMatched("add\\s+defense\\s+(\\d+)", command.toLowerCase())) != null) {
             int blockId = Integer.parseInt(m.group(1));
             if (this.findBlockById(blockId).blockDefense != null) {
                 System.out.println("Defense Already Exists");
             } else if (this.findBlockById(blockId).hasCapasity()) {
-                Defense t1 = new Defense();
-                this.findBlockById(blockId).addElem(t1);
+                Defense t1 = Defense.addElem(this.findBlockById(blockId),idToAssign)
+                if(t1!=null){
+                    idToAssign++;
+                    this.findBlockById(blockId).elems.add(t1);
+                }
             }
 
         }
+
+
+        //
         if ((m = getMatched("add\\s+bazar\\s+(\\d+)", command.toLowerCase())) != null) {
             int blockId = Integer.parseInt(m.group(1));
             if (this.findBlockById(blockId).hasCapasity()) {

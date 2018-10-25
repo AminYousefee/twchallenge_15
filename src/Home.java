@@ -37,4 +37,10 @@ public class Home extends Elem {
             sum+=index.getScore();
         }
     }
+
+
+    @Override
+    int getEmployed(){
+        return -(this.floors.size()) * (this.numOfUnitsInAFloor);
+    }
 }
