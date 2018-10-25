@@ -95,7 +95,7 @@ public class City {
             if (this.blockMilitary != null) {
                 System.out.println("Military Already Exists");
             } else if (this.findBlockById(blockId).hasCapasity()) {
-                Military t1 = Military.addMilitary(th);
+                Military t1 = Military.addMilitary(this.findBlockById(blockId).hasCapasity(),idToAssign);
                 this.findBlockById(blockId).addElem(t1);
             }
         }
