@@ -24,7 +24,7 @@ public class Gildoni extends Elem {
 
     @Override
     int getScore() {
-        int sum=;
+        int sum=10;
         for (Floor index:floors){
             sum+=index.getScore();
         }

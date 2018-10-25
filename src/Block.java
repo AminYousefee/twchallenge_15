@@ -70,4 +70,18 @@ public class Block {
         return sum;
     }
 
+
+
+
+
+    double getRefah(){
+        for (Elem index:elems){
+            double res=1.0d;
+            if (index instanceof Bazar){
+                res*=(1+0.2*index.(level-1))
+            }
+
+        }
+    }
+
 }

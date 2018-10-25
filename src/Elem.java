@@ -2,8 +2,9 @@ public abstract class Elem {
     int startingDay;
     int level;
     int id;
-
-    public Elem() {
+    Block Sup;
+    public Elem(Block Sup) {
+        this.Sup=Sup;
         startingDay =World.world.day;
     }
 
