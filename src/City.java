@@ -15,4 +15,12 @@ public class City {
 
 
 
+    void addScore(){
+
+    }
+
+
+
+
+
 }
