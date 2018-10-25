@@ -11,7 +11,9 @@ public class City {
         this.score = 0;
         this.mojodi = 30000;
     }
+    void showScore(){
 
+    }
     void addBlock(){
 
     }
