@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class City {
     int score;
     int mojodi;
+    Military blockMilitary;
 
     ArrayList<Block> blocks;
     void addBlock(){
@@ -15,7 +16,18 @@ public class City {
 
 
 
-    void addScore(){
+    void changeScore(){
+
+    }
+    void yield(){
+
+    }
+
+
+    void addMilitary(){
+
+    }
+    void removeMilitary(){
 
     }
 
