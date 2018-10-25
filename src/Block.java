@@ -13,11 +13,23 @@ public class Block {
 
 
     void addElem(Elem t1) {
-        if(numOfElems==maxNumOfElems){
+        if (numOfElems == maxNumOfElems) {
             System.out.println("Not Possible");
-        }else {
+        } else {
+            if (t1 instanceof Bazar) {
+                Sup.changeGills(-6000);
+            } else if (t1 instanceof Gildoni) {
+                //todo
+            } else if (t1 instanceof Military) {
+                Sup.changeGills(-15000);
+
+            } else if (t1 instanceof Defense) {
+                Sup.changeGills(-10000);
+            }
             elems.add(t1);
+
         }
+
 
     }
 
@@ -27,11 +39,9 @@ public class Block {
         } else {
             maxNumOfElems += 5;
 
-            Sup.changeGills((int)-Math.pow(500,level));
+            Sup.changeGills((int) -Math.pow(500, level));
             level++;
         }
-
-
 
 
     }
@@ -47,9 +57,17 @@ public class Block {
     public int getId() {
         return id;
     }
+
     void die() {
         Sup.blocks.remove(this);
     }
 
+    int getScore() {
+        int sum=0;
+        for (Elem index : elems) {
+            sum += index.getScore();
+        }
+        return sum;
+    }
 
 }

@@ -1,9 +1,18 @@
 public abstract class Elem {
+    int startingDay;
     int level;
     int id;
 
-    upgradeElem()
+    public Elem() {
+        startingDay =World.world.day;
+    }
 
+    upgradeElem(){
+
+    }
+    int getScore(){
+
+    }
 
 
 }

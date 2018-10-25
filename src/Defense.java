@@ -1,5 +1,7 @@
 public class Defense extends Army{
 
-    void Defead
-
+    @Override
+    int getScore() {
+        return (int)Math.pow(15,World.world.day-startingDay);
+    }
 }
