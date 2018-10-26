@@ -124,6 +124,7 @@ public class Block {
     }
 
 
+
     int getNumOfUnemployed() {// is defined minus for Home
         int result = 0;
         for (Elem index : elems) {
