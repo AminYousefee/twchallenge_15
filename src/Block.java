@@ -1,13 +1,13 @@
 import java.util.ArrayList;
 
 public class Block {
-    public int numOfUnemployed=0;
-    City sup;
+    public int numOfUnemployed = 0;
+    City city;
     int id;
     int level;
     int numOfElems;
     int maxNumOfElems;
-    int numToAssign;
+    int numToAssign = 1;
     Defense blockDefense;
 
     ArrayList<Elem> elems;
@@ -24,38 +24,43 @@ public class Block {
     }
 
 
-    public Block(City sup, int id) {
-        this.sup = sup;
+    public Block(City city, int id) {
+        elems = new ArrayList<Elem>(0);
+        this.city = city;
         this.id = id;
-        sup.changeGills(-1000);
+        System.out.println(id);
+        city.changeGills(-1000);
 
     }
-
+    /*
     void addElem(Elem t1) {
 
         if (t1 instanceof Bazar) {
-            sup.changeGills(-6000);
+            city.changeGills(-6000);
         } else if (t1 instanceof Home) {
             //todo
         } else if (t1 instanceof Military) {
-            sup.changeGills(-15000);
+            city.changeGills(-15000);
 
         } else if (t1 instanceof Defense) {
-            sup.changeGills(-10000);
+            city.changeGills(-10000);
         }
         elems.add(t1);
 
 
     }
 
+
+    */
+
     void upgradeBlock() {
         if (level == 3) {
             System.out.println("LEVEL 3 Not Possible");
-        } else if (sup.getGills() >= Math.pow(500, level))){
+        } else if (city.getGills() >= Math.pow(500, level)) {
 
             maxNumOfElems += 5;
 
-            sup.changeGills((int) -Math.pow(500, level));
+            city.changeGills((int) -Math.pow(500, level));
             level++;
         }
 
@@ -75,7 +80,7 @@ public class Block {
     }
 
     void die() {
-        sup.blocks.remove(this);
+        city.blocks.remove(this);
     }
 
     int getScore() {
@@ -88,13 +93,15 @@ public class Block {
 
 
     double getRefah() {
+        double res = 1.0d;
         for (Elem index : elems) {
-            double res = 1.0d;
+
             if (index instanceof Bazar) {
                 res *= (1 + 0.2 * (index.level - 1));
             }
 
         }
+        return res;
     }
 
     Elem findElemById(int id) {
@@ -117,12 +124,30 @@ public class Block {
     }
 
 
-
-    int getNumOfUnemployed(){// is defined minus for Home
-        int result;
-        for (Elem index:elems){
-            result+=index.getEmployed()
+    int getNumOfUnemployed() {// is defined minus for Home
+        int result = 0;
+        for (Elem index : elems) {
+            result -= index.getEmployed();
         }
+        //System.out.println(result);
+        return result;
+    }
+
+
+    int calculateIncome() {
+        int res = getNumOfUnemployed() * 100;
+        for (Elem index : elems) {
+            res += index.CalculateIncome();
+        }
+        return res;
+    }
+
+    public int getNumToAssign() {
+        return numToAssign;
+    }
+
+    public void addNumToAssign() {
+        numToAssign++;
     }
 
 }

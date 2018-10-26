@@ -6,20 +6,23 @@ public class Home extends Elem {
 
     public Home(Block sup, int idToAssign, int numOfFloors, int numOfUnits) {
         super(sup, idToAssign);
-        sup.sup.changeGills(-(700 + 300 * numOfFloors + 100 * numOfUnits));
+        sup.city.changeGills(-(700 + 300 * numOfFloors + 100 * numOfUnits));
         floors = new ArrayList<Floor>(numOfFloors);
-        for (Floor index : floors) {
-            index = new Floor(numOfUnits, this);
+        for (int index =0;index<numOfFloors;index++) {
+            floors.add( new Floor(numOfUnits, this));
         }
-        sup.sup.changeGills(-700);
+        sup.city.changeGills(-700);
+        numOfUnitsInAFloor= numOfUnits;
     }
 
 
     public static Home addHome(Block sup, int idToAssign, int numOfFloors, int numOfUnits) {
-        if (sup.sup.getGills() < 700 + 300 * numOfFloors + 100 * numOfUnits) {
+        if (sup.city.getGills() < 700 + 300 * numOfFloors + 100 * numOfUnits) {
             System.out.println("NOT ENOUGH MONEY");
+            return null;
         } else if (sup.numOfUnemployed < 0) {
             System.out.println("NOT ENOUGH PEOPLE");
+            return null;
 
         } else {
             return new Home(sup, idToAssign, numOfFloors, numOfUnits);
@@ -28,32 +31,40 @@ public class Home extends Elem {
 
 
     void addFloor() {
-        if (sup.sup.getGills() > 300 + 100 * numOfUnitsInAFloor) {
+        if (block.city.getGills() > 300 + 100 * numOfUnitsInAFloor) {
             Floor floor = new Floor(numOfUnitsInAFloor, this);
             this.floors.add(floor);
-            sup.sup.changeGills(-300 - 100 * numOfUnitsInAFloor);
+            block.city.changeGills(-300 - 100 * numOfUnitsInAFloor);
         } else {
             System.out.println("NOT ENOUGH MONEY");
         }
     }
 
-    int calculateIncome() {
-
+    @Override
+    int CalculateIncome() {
+        return 0;
     }
 
-
     void addUnit() {
-        if (sup.sup.getGills() > (this.floors.size() * 300) ) {
+        if (block.city.getGills() > (this.floors.size() * 300) ) {
             for (Floor f : floors) {
                 f.addUnit();
             }
-            sup.sup.changeGills(-this.floors.size() * 300);
+            block.city.changeGills(-this.floors.size() * 300);
         }else {
             System.out.println("NOT ENOUGH MONEY");
         }
     }
+
+    @Override
+    void removeElem() {
+        System.out.println("HOME DOESN'T REMOVE");
+        //As not being used it should be empty
+
+    }
+
     void addFloorAndUnit(){
-        if (sup.sup.getGills()>(300+100*(numOfUnitsInAFloor+1+this.floors.size()))){
+        if (block.city.getGills()>(300+100*(numOfUnitsInAFloor+1+this.floors.size()))){
             Floor floor = new Floor(numOfUnitsInAFloor, this);
             this.floors.add(floor);
             for (Floor f : floors) {
@@ -61,7 +72,7 @@ public class Home extends Elem {
             }
 
 
-            sup.sup.changeGills(-(300+100*(numOfUnitsInAFloor+1+this.floors.size())));
+            block.city.changeGills(-(300+100*(numOfUnitsInAFloor+1+this.floors.size())));
             numOfUnitsInAFloor++;
         }else{
             System.out.println("NOT ENOUGH MONEY");
@@ -75,11 +86,12 @@ public class Home extends Elem {
         for (Floor index : floors) {
             sum += index.getScore();
         }
+        return sum;
     }
 
 
     @Override
     int getEmployed() {
-        return -(this.floors.size()) * (this.numOfUnitsInAFloor);
+        return -(this.floors.size()) * (this.numOfUnitsInAFloor)*5;
     }
 }

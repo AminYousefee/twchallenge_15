@@ -2,41 +2,44 @@ public abstract class Elem {
     static int startNeededValue;
     static int startNeededPeople;
     int startingDay;
-    int level;
+    int level = 1;
     int id;
-    Block sup;
+    Block block;
     /*
-    public static Elem addElem(Block sup,int idToAssign) {
-        if (sup.sup.getGills() < startNeededValue) {
+    public static Elem addElem(Block block,int idToAssign) {
+        if (block.block.getGills() < startNeededValue) {
             System.out.println("NOT ENOUGH MONEY");
-        } else if (sup.numOfUnemployed < startNeededPeople) {
+        } else if (block.numOfUnemployed < startNeededPeople) {
             System.out.println("NOT ENOUGH PEOPLE");
 
         }else {
-            return new Military(sup,idToAssign);
+            return new Military(block,idToAssign);
         }
     }
     */
 
 
-
-
-    public Elem(Block Sup,int idToAssign) {
-        this.sup =Sup;
-        startingDay =World.world.day;
+    public Elem(Block block, int idToAssign) {
+        this.block = block;
+        startingDay = block.city.world.day;
         this.id = idToAssign;
+        System.out.println(id);
     }
 
 
-    void upgradeElem(){
+    void upgradeElem() {
         level++;
 
     }
-    int getScore(){
 
-    }
-    int getEmployed(){
-    }
+    abstract int getScore();
+
+    abstract int getEmployed();
+
+    abstract void removeElem();
+
+    //todo add income when the day is added
+    abstract int CalculateIncome();
 
 
 }

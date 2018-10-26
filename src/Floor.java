@@ -18,6 +18,7 @@ public class Floor {
         for (Unit index : units) {
             sum += index.getScore();
         }
+        return sum;
     }
     void addUnit(){
         units.add(new Unit(this));

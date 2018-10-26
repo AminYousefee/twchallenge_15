@@ -1,66 +1,59 @@
 import java.util.Scanner;
 
 public class World {
-    static World world;
-    public int day;
+    //static World world;
+    public int day = 0;
     City a;
     City b;
+    boolean flag = false;
 
 
     private World() {
     }
 
     public static void main(String[] args) {
-        world= new World();
-        world.a=new City();
-        world.b = new City();
-        world.a.enemy=world.b;
-        world.b.enemy=world.a;
-        boolean flag =false;
-        Scanner s =new Scanner(System.in);
-        City temp=world.a;
-        while (flag){
-            String t =s.nextLine();
-            if (t.equals("done")){
-                if (temp==world.a){
-                    temp=world.b;
-                }else {
-                    temp=world.a;
+        World world = new World();
+        world.a = new City(world);
+        world.b = new City(world);
+        world.a.enemy = world.b;
+        world.b.enemy = world.a;
+
+        Scanner s = new Scanner(System.in);
+        City temp = world.a;
+        while (!world.flag) {
+            String t = s.nextLine();
+            if (t.equals("done")) {
+                world.day++;
+                if (temp == world.a) {
+                    temp.done();
+                    temp = world.b;
+                } else {
+                    temp.done();
+                    temp = world.a;
+
                 }
-            }else {
+            } else {
                 temp.processCommand(t);
             }
 
 
-
-
         }
-
-
-
-
-
+        System.out.println("a scored");
+        System.out.println(world.a.getScore());
+        System.out.println("b scored");
+        System.out.println(world.a.getScore());
 
 
     }
-    void addDay(){
 
-    }
-
-
-
-
-
-
-
-
-    void isFinished(){
+    void addDay() {
 
     }
 
 
+    void isFinished() {
 
-
+    }
 
 
 }

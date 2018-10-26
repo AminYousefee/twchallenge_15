@@ -11,11 +11,8 @@ public class Unit {
         }
     }
 
-    int calculateIncome() {
-
-    }
 
     double getScore() {
-        return 5 * this.Sup.Sup.sup.getRefah();
+        return 5 * this.Sup.Sup.block.getRefah();
     }
 }
