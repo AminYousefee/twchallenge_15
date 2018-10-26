@@ -3,12 +3,14 @@ public class Bazar extends Elem {
 
     int[] importantDays;
     @Override
-    int getScore(){
-        return (int)Math.pow(5, block.city.world.day-startingDay);
+    double getScore(){
+        return Math.pow(5, block.city.world.day-startingDay);
     }
 
     public Bazar(Block Sup, int idToAssign) {
         super(Sup, idToAssign);
+        importantDays =new int[5];
+
         importantDays[0] = startingDay;
     }
 
@@ -21,6 +23,7 @@ public class Bazar extends Elem {
             return null;
 
         }else {
+            sup.city.changeGills(-6000);
             return new Bazar(sup,idToAssign);
         }
     }
@@ -50,7 +53,7 @@ public class Bazar extends Elem {
     }
 
     @Override
-    void removeElem() {
+    void removeElem(boolean status) {
         if (block.city.getGills()<500){
             System.out.println("NOT ENOUGH MONEY");
         }else {

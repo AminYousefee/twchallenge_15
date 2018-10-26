@@ -1,7 +1,7 @@
 public class Defense extends Army{
 
     @Override
-    void removeElem() {
+    void removeElem(boolean status) {
         block.city.changeGills(10000);
         block.elems.remove(this);
 
@@ -16,6 +16,7 @@ public class Defense extends Army{
             return null;
 
         }else {
+            block.city.changeGills(-10000);
             return new Defense(block,idToAssign);
         }
     }
@@ -25,8 +26,8 @@ public class Defense extends Army{
     }
 
     @Override
-    int getScore() {
-        return (int)Math.pow(15, block.city.world.day-startingDay);
+    double getScore() {
+        return Math.pow(15, block.city.world.day-startingDay);
     }
 
 

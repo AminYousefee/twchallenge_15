@@ -20,6 +20,7 @@ public class Military extends Army {
             return null;
 
         } else {
+            sup.city.changeGills(-15000);
             return new Military(sup, idToAssign);
         }
     }
@@ -29,6 +30,7 @@ public class Military extends Army {
             if (this.MilPower > enemyBlock.blockDefense.MilPower) {
                 enemyBlock.die();
                 System.out.println("Attacked and Won");
+                block.city.changeScore(enemyBlock.getScore());
             } else {
                 System.out.println("Attacked but lost");
             }
@@ -50,8 +52,8 @@ public class Military extends Army {
 
 
     @Override
-    int getScore() {
-        return (int) Math.pow(10, block.city.world.day - startingDay);
+    double getScore() {
+        return Math.pow(10, block.city.world.day - startingDay);
     }
 
 
@@ -60,7 +62,7 @@ public class Military extends Army {
     }
 
     @Override
-    void removeElem() {
+    void removeElem(boolean status) {
         block.city.changeGills(10000);
         block.elems.remove(this);
     }

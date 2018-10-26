@@ -15,8 +15,8 @@ public class World {
         World world = new World();
         world.a = new City(world);
         world.b = new City(world);
-        world.a.enemy = world.b;
-        world.b.enemy = world.a;
+        world.a.setEnemy(world.b);
+        world.b.setEnemy(world.a);
 
         Scanner s = new Scanner(System.in);
         City temp = world.a;
@@ -39,9 +39,9 @@ public class World {
 
         }
         System.out.println("a scored");
-        System.out.println(world.a.getScore());
+        System.out.format("%.2f\n",world.a.getScore());
         System.out.println("b scored");
-        System.out.println(world.a.getScore());
+        System.out.format("%.2f\n",world.b.getScore());
 
 
     }

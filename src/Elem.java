@@ -32,11 +32,11 @@ public abstract class Elem {
 
     }
 
-    abstract int getScore();
+    abstract double getScore();
 
     abstract int getEmployed();
 
-    abstract void removeElem();
+    abstract void removeElem(boolean status);
 
     //todo add income when the day is added
     abstract int CalculateIncome();

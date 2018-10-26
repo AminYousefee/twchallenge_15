@@ -2,17 +2,18 @@ import java.util.ArrayList;
 
 public class Unit {
     ArrayList<Person> people;
-    Floor Sup;
+    Floor floor;
 
     public Unit(Floor t) {
-        Sup = t;
-        for (Person index : people) {
-            index = new Person();
+        people =new ArrayList<Person>(0);
+        floor = t;
+        for (int i=0;i<5;i++) {
+            people.add(new Person());
         }
     }
 
 
     double getScore() {
-        return 5 * this.Sup.Sup.block.getRefah();
+        return 2 + 5 * this.floor.home.block.getRefah();
     }
 }

@@ -4,9 +4,10 @@ public class Block {
     public int numOfUnemployed = 0;
     City city;
     int id;
-    int level;
-    int numOfElems;
-    int maxNumOfElems;
+    int level=1;
+    //int numOfElems=0;
+    //I deleted it as it needed to be change in every addition of elems
+    int maxNumOfElems=15;
     int numToAssign = 1;
     Defense blockDefense;
 
@@ -62,6 +63,8 @@ public class Block {
 
             city.changeGills((int) -Math.pow(500, level));
             level++;
+        }else {
+            System.out.println("NOT ENOUGH MONEY");
         }
 
 
@@ -83,8 +86,8 @@ public class Block {
         city.blocks.remove(this);
     }
 
-    int getScore() {
-        int sum = 0;
+    double getScore() {
+        double sum = 0;
         for (Elem index : elems) {
             sum += index.getScore();
         }
@@ -116,11 +119,11 @@ public class Block {
 
 
     boolean hasCapasity() {
-        if (maxNumOfElems != numOfElems) {
+        if (maxNumOfElems == this.elems.size()) {
             System.out.println("BLOCK FULL");
         }
 
-        return maxNumOfElems == numOfElems;
+        return maxNumOfElems != this.elems.size();
     }
 
 
